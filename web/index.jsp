@@ -12,7 +12,6 @@
     <link rel="stylesheet" href="resources/library/css/bootstrap.css"/>
 
     <style type="text/css">
-
       .education{
         border: 1px solid black;
       }
