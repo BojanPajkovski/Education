@@ -32,6 +32,11 @@ public class UniversityDAOIMPL {
             ex.printStackTrace();
         }
 
+        finally {
+
+            try { conn.close(); } catch (Exception e) { e.printStackTrace(); }
+        }
+
 
     }
 
@@ -58,6 +63,11 @@ public class UniversityDAOIMPL {
 
         } catch (Exception ex) {
             ex.printStackTrace();
+        }
+
+        finally {
+
+            try { conn.close(); } catch (Exception e) { e.printStackTrace(); }
         }
 
 
@@ -96,6 +106,11 @@ public class UniversityDAOIMPL {
             ex.printStackTrace();
         }
 
+        finally {
+
+            try { conn.close(); } catch (Exception e) { e.printStackTrace(); }
+        }
+
     }
 
     public University getById(int id) {
@@ -128,6 +143,11 @@ public class UniversityDAOIMPL {
             }
         } catch (Exception ex) {
             ex.printStackTrace();
+        }
+
+        finally {
+
+            try { conn.close(); } catch (Exception e) { e.printStackTrace(); }
         }
         return null;
     }
@@ -168,6 +188,11 @@ public class UniversityDAOIMPL {
             }
         } catch (Exception ex) {
             ex.printStackTrace();
+        }
+
+        finally {
+
+            try { conn.close(); } catch (Exception e) { e.printStackTrace(); }
         }
         return universities;
 
@@ -211,6 +236,11 @@ public class UniversityDAOIMPL {
             }
         } catch (Exception ex) {
             ex.printStackTrace();
+        }
+
+        finally {
+
+            try { conn.close(); } catch (Exception e) { e.printStackTrace(); }
         }
         return universities;
 
