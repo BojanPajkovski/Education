@@ -33,6 +33,11 @@ public class FacultyDAOIMPL {
             ex.printStackTrace();
         }
 
+        finally {
+
+            try { conn.close(); } catch (Exception e) { e.printStackTrace(); }
+        }
+
 
     }
 
@@ -60,7 +65,10 @@ public class FacultyDAOIMPL {
         } catch (Exception ex) {
             ex.printStackTrace();
         }
+        finally {
 
+            try { conn.close(); } catch (Exception e) { e.printStackTrace(); }
+        }
 
     }
 
@@ -100,6 +108,11 @@ public class FacultyDAOIMPL {
             ex.printStackTrace();
         }
 
+        finally {
+
+            try { conn.close(); } catch (Exception e) { e.printStackTrace(); }
+        }
+
     }
 
     public Faculty getById(long id) {
@@ -131,6 +144,11 @@ public class FacultyDAOIMPL {
             }
         } catch (Exception ex) {
             ex.printStackTrace();
+        }
+
+        finally {
+
+            try { conn.close(); } catch (Exception e) { e.printStackTrace(); }
         }
         return null;
     }
@@ -169,6 +187,11 @@ public class FacultyDAOIMPL {
             }
         } catch (Exception ex) {
             ex.printStackTrace();
+        }
+
+        finally {
+
+            try { conn.close(); } catch (Exception e) { e.printStackTrace(); }
         }
         return faculties;
 
@@ -211,6 +234,12 @@ public class FacultyDAOIMPL {
         } catch (Exception ex) {
             ex.printStackTrace();
         }
+
+        finally {
+
+            try { conn.close(); } catch (Exception e) { e.printStackTrace(); }
+        }
+
         return faculties;
 
 
@@ -247,6 +276,12 @@ public class FacultyDAOIMPL {
         } catch (Exception ex) {
             ex.printStackTrace();
         }
+
+        finally {
+
+            try { conn.close(); } catch (Exception e) { e.printStackTrace(); }
+        }
+
         return null;
 
 
@@ -286,17 +321,17 @@ public class FacultyDAOIMPL {
 
                 faculties.add(faks);
 
-
-
-
-
             }
 
         }
         catch(Exception e){
-
-e.printStackTrace();
+            e.printStackTrace();
         }
+        finally {
+
+            try { conn.close(); } catch (Exception e) { e.printStackTrace(); }
+        }
+
         return faculties;
     }
 
@@ -336,7 +371,10 @@ e.printStackTrace();
             ex.printStackTrace();
         }
 
+        finally {
 
+            try { conn.close(); } catch (Exception e) { e.printStackTrace(); }
+        }
 
 
         return faculties;
