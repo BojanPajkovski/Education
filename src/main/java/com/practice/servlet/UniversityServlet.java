@@ -35,7 +35,6 @@ public class UniversityServlet extends HttpServlet{
             forward = LIST_UNIVERSITIES;
 
         }
-
         request.getRequestDispatcher(forward).forward(request, response);
     }
 }

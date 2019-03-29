@@ -23,9 +23,7 @@ public class StudentDAOIMPL {
         Statement stmt = null;
         ResultSet rst = null;
 
-
         try {
-
 
             stmt = conn.createStatement();
             String sqlQuery = "DELETE from student  where student.id = ";
@@ -47,13 +45,9 @@ public class StudentDAOIMPL {
         Connection conn = DbConection_Singleton_Pattern.getConnection();
         PreparedStatement stmt = null;
         ResultSet rst = null;
-
-
         try {
 
-
             String sqlQuery = "INSERT INTO student (name , surname, age, faculty) VALUES(?,?,?,?);";
-
 
             stmt = conn.prepareStatement(sqlQuery);
             stmt.setString(1, student.getName());
@@ -66,9 +60,7 @@ public class StudentDAOIMPL {
         } catch (Exception ex) {
             ex.printStackTrace();
 
-        }
-
-        finally {
+        } finally {
 
             try { conn.close(); } catch (Exception e) { e.printStackTrace(); }
         }
@@ -80,13 +72,9 @@ public class StudentDAOIMPL {
         PreparedStatement stmt = null;
         ResultSet rst = null;
 
-
         try {
 
-
             String sqlQuery = "UPDATE student SET  name = ?,surname =?, age = ?,faculty = ? WHERE id = ? ";
-
-            //UPDATE Users SET password=?, fullname=?, email=? WHERE username=?";
 
             stmt = conn.prepareStatement(sqlQuery);
             stmt.setString(1, student.getName());
@@ -95,15 +83,11 @@ public class StudentDAOIMPL {
             stmt.setString(4, student.getFaculty());
             stmt.setLong(5, student.getId());
 
-            // TREBA DA SE STAI I ID ??
-
             stmt.execute();
 
         } catch (Exception ex) {
             ex.printStackTrace();
-        }
-
-        finally {
+        } finally {
 
             try { conn.close(); } catch (Exception e) { e.printStackTrace(); }
         }
@@ -116,7 +100,7 @@ public class StudentDAOIMPL {
         Connection conn = DbConection_Singleton_Pattern.getConnection(); //DbConection_Singleton_Pattern.getConnection();
         Statement stmt = null;
         ResultSet rst = null;
-
+        Student medo = null;
 
         try {
 
@@ -135,7 +119,7 @@ public class StudentDAOIMPL {
                 int studentAge = rst.getInt("age");
                 String studentFaculty = rst.getString("faculty");
 
-                Student medo = new Student(studentId, studentName, studentSurName, studentAge, studentFaculty);
+                medo = new Student(studentId, studentName, studentSurName, studentAge, studentFaculty);
 
                 System.out.println(medo.getName());
 
@@ -145,13 +129,11 @@ public class StudentDAOIMPL {
             }
         } catch (Exception ex) {
             ex.printStackTrace();
-        }
-
-        finally {
+        } finally {
 
             try { conn.close(); } catch (Exception e) { e.printStackTrace(); }
         }
-        return null;
+        return medo;
     }
 
     public List<Student> getAll() {
@@ -162,20 +144,14 @@ public class StudentDAOIMPL {
 
         List<Student> students = null;
 
-
         try {
-
-
             stmt = conn.createStatement();
             String sqlQuery = "SELECt * from student";
 
             rst = stmt.executeQuery(sqlQuery);
 
             students = new ArrayList<Student>();
-
-
             while (rst.next()) {
-
                 Long studentId = rst.getLong("id");
                 String studentName = rst.getString("name");
                 String studentSurName = rst.getString("surname");
@@ -183,15 +159,10 @@ public class StudentDAOIMPL {
                 String studentFaculty = rst.getString("faculty");
                 Student student = new Student(studentId, studentName, studentSurName, studentAge, studentFaculty);
                 students.add(student);
-
-
             }
         } catch (Exception ex) {
             ex.printStackTrace();
-        }
-
-        finally {
-
+        } finally {
             try { conn.close(); } catch (Exception e) { e.printStackTrace(); }
         }
         return students;
@@ -206,20 +177,14 @@ public class StudentDAOIMPL {
 
         List<Student> students = null;
 
-
         try {
-
-
             stmt = conn.createStatement();
             String sqlQuery = "SELECt * from student ORDER BY student.age";
 
             rst = stmt.executeQuery(sqlQuery);
 
             students = new ArrayList<Student>();
-
-
             while (rst.next()) {
-
                 Long studentId = rst.getLong("id");
                 String studentName = rst.getString("name");
                 String studentSurName = rst.getString("surname");
@@ -232,10 +197,7 @@ public class StudentDAOIMPL {
             }
         } catch (Exception ex) {
             ex.printStackTrace();
-        }
-
-        finally {
-
+        } finally {
             try { conn.close(); } catch (Exception e) { e.printStackTrace(); }
         }
         return students;
@@ -250,10 +212,7 @@ public class StudentDAOIMPL {
 
         List<Student> students = null;
 
-
         try {
-
-
             stmt = conn.createStatement();
             String sqlQuery = "SELECt * from student WHERE student.name =";
             sqlQuery += "'" + name + "'";
@@ -262,7 +221,6 @@ public class StudentDAOIMPL {
             rst = stmt.executeQuery(sqlQuery);
 
             students = new ArrayList<Student>();
-
 
             while (rst.next()) {
 
@@ -278,10 +236,7 @@ public class StudentDAOIMPL {
             }
         } catch (Exception ex) {
             ex.printStackTrace();
-        }
-
-        finally {
-
+        } finally {
             try { conn.close(); } catch (Exception e) { e.printStackTrace(); }
         }
         return students;
@@ -297,14 +252,12 @@ public class StudentDAOIMPL {
         if(totalCredits > 20){
             message = "Ja ispolnuva kvotata za krediti";
         } else {
-
             message=" Ne ja ispolnuva kvotata za krediti";
         }
 
         StudentSubjectDTO studentSubjectDTO = new StudentSubjectDTO(subjects, totalCredits, message);
 
         return studentSubjectDTO;
-
       }
 
     private List<Subject> getSubjectForStudent(Long studentId){
@@ -331,24 +284,17 @@ public class StudentDAOIMPL {
                 String subjectName = rst.getString("name");
                 int subjectCredits = rst.getInt("credits");
                 String subjectSemestar = rst.getString("semestar");
-
-
                 Subject subject = new Subject(subjectName, subjectCredits,subjectSemestar);
-
-
                 subjects.add(subject);
-
             }
 
 
         } catch (Exception e) {
 
             e.printStackTrace();
-        }  finally {
-
+        } finally {
             try { conn.close(); } catch (Exception e) { e.printStackTrace(); }
         }
-
 
         return subjects;
     }
@@ -371,24 +317,16 @@ public class StudentDAOIMPL {
 
             rst = stmt.executeQuery(sqlQuery);
 
-
             while (rst.next()) {
 
                 credits = rst.getInt("totalCredits");
-
             }
 
-
         } catch (Exception e) {
-
             e.printStackTrace();
-        }
-
-        finally {
-
+        } finally {
             try { conn.close(); } catch (Exception e) { e.printStackTrace(); }
         }
-
         return credits;
     }
 

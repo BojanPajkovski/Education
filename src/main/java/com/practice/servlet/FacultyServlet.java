@@ -27,7 +27,6 @@ public class FacultyServlet extends HttpServlet {
         String forward = "";
 
         if(action.equalsIgnoreCase("edit")){
-
             forward = INSERT_OR_EDIT;
             Long id = Long.parseLong(request.getParameter("id"));
             request.setAttribute("id", id);

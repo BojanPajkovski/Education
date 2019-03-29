@@ -18,14 +18,8 @@ public class SubjectDAOIMPL {
     public void delete(long id){
 
         Connection conn = DbConection_Singleton_Pattern.getConnection();
-        Statement stmt = null;
-        ResultSet rst = null;
-
-
-
+        Statement stmt;
         try{
-
-
             stmt = conn.createStatement();
             String sqlQuery = "DELETE from subject  where subject.id = ";
             sqlQuery +=id;
@@ -34,23 +28,15 @@ public class SubjectDAOIMPL {
         }
         catch(Exception ex){
             ex.printStackTrace();
-        }
-
-        finally {
-
+        } finally {
             try { conn.close(); } catch (Exception e) { e.printStackTrace(); }
         }
-
-
     }
 
     public void insert (Subject subject) {
 
         Connection conn = DbConection_Singleton_Pattern.getConnection();
-        PreparedStatement stmt = null;
-        ResultSet rst = null;
-
-
+        PreparedStatement stmt;
 
         try {
 
@@ -65,11 +51,7 @@ public class SubjectDAOIMPL {
 
         } catch (Exception ex) {
             ex.printStackTrace();
-
-        }
-
-        finally {
-
+        } finally {
             try { conn.close(); } catch (Exception e) { e.printStackTrace(); }
         }
     }
@@ -77,16 +59,10 @@ public class SubjectDAOIMPL {
     public void update(Subject subject){
 
         Connection conn = DbConection_Singleton_Pattern.getConnection();
-        PreparedStatement stmt = null;
-        ResultSet rst = null;
-
+        PreparedStatement stmt;
 
         try{
-
-
             String sqlQuery = "UPDATE subject SET  name = ?,credits =?, semestar = ? WHERE id = ? ";
-
-            //UPDATE Users SET password=?, fullname=?, email=? WHERE username=?";
 
             stmt = conn.prepareStatement(sqlQuery);
             stmt.setString(1, subject.getName());
@@ -94,17 +70,12 @@ public class SubjectDAOIMPL {
             stmt.setString(3, subject.getSemestar());
             stmt.setLong(4,subject.getId());
 
-            // TREBA DA SE STAI I ID ??
-
             stmt.execute();
 
         }
         catch(Exception ex){
             ex.printStackTrace();
-        }
-
-        finally {
-
+        } finally {
             try { conn.close(); } catch (Exception e) { e.printStackTrace(); }
         }
 
@@ -112,15 +83,12 @@ public class SubjectDAOIMPL {
 
     public Subject  getById (long id)  {
 
-
         Connection conn = DbConection_Singleton_Pattern.getConnection();
-        Statement stmt = null;
-        ResultSet rst = null;
-
+        Statement stmt;
+        ResultSet rst;
+        Subject subject = null;
 
         try{
-
-
 
             stmt = conn.createStatement();
 
@@ -135,40 +103,30 @@ public class SubjectDAOIMPL {
                 int subjectCredits = rst.getInt("credits");
                 String subjectSemestar = rst.getString("semestar");
 
-
-                Subject subject = new Subject(subjectId,subjectName,subjectCredits,subjectSemestar);
+                subject = new Subject(subjectId,subjectName,subjectCredits,subjectSemestar);
 
                 System.out.println(subject.getName());
 
                 return subject;
-
-
-
             }
         }
         catch(Exception ex){
             ex.printStackTrace();
-        }
-
-        finally {
-
+        }  finally {
             try { conn.close(); } catch (Exception e) { e.printStackTrace(); }
         }
-        return null;
+        return subject;
     }
 
     public List<Subject> getAll(){
 
         Connection conn = DbConection_Singleton_Pattern.getConnection();
-        Statement stmt = null;
-        ResultSet rst = null;
+        Statement stmt;
+        ResultSet rst;
 
         List <Subject> subjects = null;
 
-
         try{
-
-
             stmt = conn.createStatement();
             String sqlQuery = "SELECt * from subject";
 
@@ -176,26 +134,19 @@ public class SubjectDAOIMPL {
 
             subjects = new ArrayList<Subject>() ;
 
-
             while(rst.next()){
 
                 Long subjectId = rst.getLong("id");
                 String subjectName = rst.getString("name");
                 int subjectCredits = rst.getInt("credits");
                 String subjectSemestar = rst.getString("semestar");;
-
                 Subject subject = new Subject(subjectId,subjectName,subjectCredits,subjectSemestar);
                 subjects.add(subject);
-
-
             }
         }
         catch(Exception ex){
             ex.printStackTrace();
-        }
-
-        finally {
-
+        } finally {
             try { conn.close(); } catch (Exception e) { e.printStackTrace(); }
         }
         return subjects;
@@ -205,8 +156,8 @@ public class SubjectDAOIMPL {
     public List<Subject> getSubjectsByCredits(){
 
         Connection conn = DbConection_Singleton_Pattern.getConnection();
-        Statement stmt = null;
-        ResultSet rst = null;
+        Statement stmt;
+        ResultSet rst;
 
         List <Subject> subjects = null;
 
@@ -221,7 +172,6 @@ public class SubjectDAOIMPL {
             subjects = new ArrayList<Subject>() ;
 
             while(rst.next()){
-
                 Long subjectId = rst.getLong("id");
                 String subjectName = rst.getString("name");
                 int subjectCredits = rst.getInt("credits");
@@ -229,29 +179,22 @@ public class SubjectDAOIMPL {
 
                 Subject subject = new Subject(subjectId,subjectName,subjectCredits,subjectSemestar);
                 subjects.add(subject);
-
-
             }
-
 
         }catch(Exception e){
 
             e.printStackTrace();
-        }
-
-        finally {
-
+        } finally {
             try { conn.close(); } catch (Exception e) { e.printStackTrace(); }
         }
-
         return subjects;
     }
 
     public List<Subject> getSubjectsBySemestar(){
 
         Connection conn = DbConection_Singleton_Pattern.getConnection();
-        Statement stmt = null;
-        ResultSet rst = null;
+        Statement stmt;
+        ResultSet rst;
 
         List <Subject> subjects = null;
 
@@ -274,29 +217,21 @@ public class SubjectDAOIMPL {
 
                 Subject subject = new Subject(subjectId,subjectName,subjectCredits,subjectSemestar);
                 subjects.add(subject);
-
-
             }
 
-
         }catch(Exception e){
-
             e.printStackTrace();
-        }
-
-        finally {
-
+        } finally {
             try { conn.close(); } catch (Exception e) { e.printStackTrace(); }
         }
-
         return subjects;
     }
 
     public List<Subject> searchByNameAndCredits(String name, int credits){
 
         Connection conn = DbConection_Singleton_Pattern.getConnection();
-        Statement stmt = null;
-        ResultSet rst = null;
+        Statement stmt;
+        ResultSet rst;
 
         List <Subject> subjects = null;
 
@@ -322,23 +257,15 @@ public class SubjectDAOIMPL {
 
                 Subject subject = new Subject(subjectId,subjectName,subjectCredits,subjectSemestar);
                 subjects.add(subject);
-
-
             }
-
 
         }catch(Exception e){
 
             e.printStackTrace();
-        }
-
-        finally {
-
+        } finally {
             try { conn.close(); } catch (Exception e) { e.printStackTrace(); }
         }
-
         return subjects;
     }
-
 
 }
