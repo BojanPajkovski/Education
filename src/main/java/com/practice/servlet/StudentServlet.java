@@ -17,8 +17,6 @@ public class StudentServlet extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-        String action = request.getParameter("action");
-
         String forward = "";
 
         if(request.getParameter("action").equalsIgnoreCase("edit")){
@@ -34,7 +32,6 @@ public class StudentServlet extends HttpServlet {
 
             forward =  LIST_ALL_STUDENTS;
         }
-
 
         request.getRequestDispatcher(forward).forward(request, response);
     }

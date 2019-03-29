@@ -23,7 +23,7 @@ public class SubjectServlet extends HttpServlet {
 
             forward = INSERT_OR_EDIT_SUBJECT;
             Long id = Long.parseLong(request.getParameter("id"));
-            request.setAttribute("id", id); // Kako go setira ?
+            request.setAttribute("id", id);
         }
 
         else if(action.equalsIgnoreCase("insert")){
@@ -32,9 +32,7 @@ public class SubjectServlet extends HttpServlet {
 
         else if(action.equalsIgnoreCase("list")){
             forward = LIST_ALL_SUBJECTS;
-
         }
-
         request.getRequestDispatcher(forward).forward(request, response);
     }
 }
